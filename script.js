@@ -1,5 +1,5 @@
 // Setze das Release-Datum
-const releaseDate = new Date("2025-12-31T00:00:00").getTime();
+const releaseDate = new Date("2024-12-25T00:00:00").getTime();
 
 // Aktualisiere den Countdown jede Sekunde
 const countdownTimer = setInterval(() => {
