@@ -1,50 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching Soon</title>
+    <title>Einreise Guidebook</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="background">
-        <!-- Logo -->
-        <div class="logo">SydowGame.de</div>
-        
-        <!-- Text und Countdown -->
-        <div class="content">
-            <p class="subtitle">Website ist in Wartungsarbeiten</p>
-            <h1 class="main-title">Wir <span class="highlight">Releasen</span> bald!</h1>
-            
-            <!-- Countdown -->
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days">0</span>
-                    <p>Days</p>
+    <div class="ui-backdrop">
+        <div class="guidebook-card">
+            <header class="guidebook-header">
+                <div class="guidebook-title">
+                    <img src="background.png" alt="Hessen Roleplay" class="guidebook-logo">
+                    <div>
+                        <h1>Guidebook</h1>
+                        <p>Spieler in deiner Nähe</p>
+                    </div>
                 </div>
-                <div class="countdown-item">
-                    <span id="hours">0</span>
-                    <p>Hours</p>
+                <div class="command-info">
+                    <span class="command-tag" data-command="enter"></span>
+                    <span class="command-tag" data-command="exit"></span>
                 </div>
-                <div class="countdown-item">
-                    <span id="minutes">0</span>
-                    <p>Minutes</p>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds">0</span>
-                    <p>Seconds</p>
-                </div>
-            </div>
-            
-            <!-- Button -->
-            <a href="#" class="cta-btn">Learn More</a>
-        </div>
-        
-        <!-- Icon -->
-        <div class="icon">
-            🚀
+            </header>
+            <main class="guidebook-content">
+                <section class="player-list" aria-label="Spieler in Reichweite">
+                    <ul id="playerList"></ul>
+                </section>
+                <section class="player-actions" aria-label="Aktionen">
+                    <h2>Spieler Aktionen</h2>
+                    <button class="action-button" data-action="einreisen">Einreisen</button>
+                    <button class="action-button" data-action="secondChance">2 Chance</button>
+                    <button class="action-button" data-action="ausreisen">Ausreisen</button>
+                    <button class="action-button" data-action="perma">Perma</button>
+                </section>
+            </main>
+            <footer class="guidebook-footer">
+                <div class="teleport-info" data-location="entry"></div>
+                <div class="teleport-info" data-location="commandEnter"></div>
+                <div class="teleport-info" data-location="commandExit"></div>
+            </footer>
+            <section class="action-log" aria-live="polite">
+                <h3>Aktionen</h3>
+                <ul id="actionLog"></ul>
+            </section>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
