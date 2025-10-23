@@ -1,4 +1,15 @@
-/* Allgemeines Styling */
+:root {
+    --background-blur: rgba(0, 0, 0, 0.65);
+    --card-background: linear-gradient(145deg, #611627 0%, #360818 100%);
+    --card-border: rgba(255, 255, 255, 0.2);
+    --accent-color: #ef3f6b;
+    --accent-secondary: #ffa54c;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.65);
+    --button-hover: rgba(255, 255, 255, 0.12);
+    --font-family: 'Montserrat', 'Segoe UI', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,217 +17,261 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    height: 100vh;
+    font-family: var(--font-family);
+    background: url('background.png') center / cover no-repeat fixed;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1a1a3f;
-    color: white;
+    color: var(--text-primary);
 }
 
-/* Hintergrund */
-#background {
-    background: url('background.jpg') no-repeat center center/cover;
-    position: relative;
+.ui-backdrop {
     width: 100%;
-    height: 100%;
+    max-width: 960px;
+    padding: 40px;
+    backdrop-filter: blur(6px);
+    background: var(--background-blur);
+    border-radius: 22px;
+}
+
+.guidebook-card {
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    padding: 24px 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.guidebook-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.guidebook-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.guidebook-title h1 {
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.guidebook-title p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+.guidebook-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.command-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 8px;
+}
+
+.command-tag {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guidebook-content {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 32px;
+    padding: 28px 0;
+}
+
+.player-list {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    padding: 18px;
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.player-list ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.player-card {
+    display: flex;
     align-items: center;
-    text-align: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Logo */
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ff5733;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.player-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.12);
 }
 
-/* Content */
-.content {
-    z-index: 2;
+.player-card.active {
+    background: rgba(239, 63, 107, 0.65);
+    box-shadow: 0 12px 24px rgba(239, 63, 107, 0.35);
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #9b9b9b;
+.player-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.player-callsign {
+    font-size: 16px;
+    letter-spacing: 0.4px;
+}
+
+.player-distance {
+    font-size: 12px;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.main-title {
-    font-size: 3rem;
-    font-weight: bold;
+.player-actions h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
 }
 
-.highlight {
-    color: #ff5733;
-}
-
-/* Countdown */
-.countdown {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.countdown-item {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 80px;
-    text-align: center;
-}
-
-.countdown-item span {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ffdd33;
-}
-
-.countdown-item p {
-    font-size: 1rem;
-    margin-top: 5px;
-}
-
-/* Button */
-.cta-btn {
-    text-decoration: none;
-    background: #ff5733;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 30px;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-}
-
-.cta-btn:hover {
-    background: #e04b2f;
-}
-
-/* Icon */
-.icon {
-    font-size: 3rem;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-/* Allgemeines Styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1a1a3f;
-    color: white;
-}
-
-/* Hintergrund */
-#background {
-    background: url('background.png') no-repeat center center/cover;
-    position: relative;
-    width: 100%;
-    height: 100%;
+.player-actions {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    gap: 14px;
 }
 
-/* Logo */
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ff5733;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.action-button {
+    border: none;
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.09);
+    cursor: pointer;
+    letter-spacing: 0.6px;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* Content */
-.content {
-    z-index: 2;
+.action-button:hover {
+    background: var(--button-hover);
+    transform: translateY(-1px);
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #9b9b9b;
+.action-button[data-action="einreisen"] {
+    background: linear-gradient(135deg, rgba(67, 198, 172, 0.85), rgba(25, 22, 84, 0.85));
+}
+
+.action-button[data-action="secondChance"] {
+    background: linear-gradient(135deg, rgba(255, 159, 67, 0.9), rgba(214, 48, 49, 0.9));
+}
+
+.action-button[data-action="ausreisen"] {
+    background: linear-gradient(135deg, rgba(255, 127, 80, 0.9), rgba(255, 71, 87, 0.9));
+}
+
+.action-button[data-action="perma"] {
+    background: linear-gradient(135deg, rgba(134, 67, 255, 0.85), rgba(72, 12, 168, 0.85));
+}
+
+.guidebook-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.teleport-info {
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    line-height: 1.4;
+}
+
+.action-log {
+    margin-top: 18px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 16px;
+    padding: 16px 22px;
+}
+
+.action-log h3 {
+    font-size: 16px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
-.main-title {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
-.highlight {
-    color: #ff5733;
-}
-
-/* Countdown */
-.countdown {
+.action-log ul {
+    list-style: none;
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 160px;
+    overflow-y: auto;
 }
 
-.countdown-item {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 80px;
-    text-align: center;
+.action-log li {
+    font-size: 13px;
+    color: var(--text-secondary);
 }
 
-.countdown-item span {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #e04b2f;
+.action-log time {
+    color: var(--accent-secondary);
+    margin-right: 8px;
 }
 
-.countdown-item p {
-    font-size: 1rem;
-    margin-top: 5px;
-}
+@media (max-width: 860px) {
+    .guidebook-content {
+        grid-template-columns: 1fr;
+    }
 
-/* Button */
-.cta-btn {
-    text-decoration: none;
-    background: #ff5733;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 30px;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-}
-
-.cta-btn:hover {
-    background: #e04b2f;
-}
-
-/* Icon */
-.icon {
-    font-size: 3rem;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    .player-actions {
+        order: -1;
+    }
 }
