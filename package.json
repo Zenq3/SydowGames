@@ -1,0 +1,14 @@
+{
+  "name": "redevix-login",
+  "version": "1.0.0",
+  "description": "FiveM Login Frontend und Backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

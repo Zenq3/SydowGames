@@ -1,26 +1,58 @@
-// Setze das Release-Datum
-const releaseDate = new Date("2024-12-25T00:00:00").getTime();
+const form = document.querySelector('#login-form');
+const feedback = document.querySelector('.form-feedback');
+const forgotLink = document.querySelector('.forgot-link');
 
-// Aktualisiere den Countdown jede Sekunde
-const countdownTimer = setInterval(() => {
-    const now = new Date().getTime();
-    const timeLeft = releaseDate - now;
+const endpoint = '/api/login';
 
-    if (timeLeft > 0) {
-        // Berechne Tage, Stunden, Minuten und Sekunden
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+function setFeedback(message = '', type = 'error') {
+    feedback.textContent = message;
+    feedback.dataset.state = type;
+}
 
-        // Update die HTML-Elemente
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
-    } else {
-        // Wenn der Countdown endet
-        clearInterval(countdownTimer);
-        document.querySelector(".content").innerHTML = "<h1>We're Live!</h1>";
+async function submitLogin(event) {
+    event.preventDefault();
+    setFeedback('');
+
+    const formData = new FormData(form);
+    const payload = {
+        username: formData.get('username')?.trim(),
+        password: formData.get('password') || ''
+    };
+
+    if (!payload.username || !payload.password) {
+        setFeedback('BITTE ALLE FELDER AUSFÜLLEN.');
+        return;
     }
-}, 1000);
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            const message = data?.message || 'ANMELDUNG FEHLGESCHLAGEN.';
+            setFeedback(message);
+            return;
+        }
+
+        setFeedback(data?.message || 'ERFOLGREICH EINGELOGGT.', 'success');
+        form.reset();
+    } catch (error) {
+        console.error('Login-Fehler:', error);
+        setFeedback('SERVER NICHT ERREICHBAR.');
+    }
+}
+
+function handleForgotClick(event) {
+    event.preventDefault();
+    setFeedback('BITTE EIN TICKET IM SUPPORT ERSTELLEN.');
+}
+
+form?.addEventListener('submit', submitLogin);
+forgotLink?.addEventListener('click', handleForgotClick);

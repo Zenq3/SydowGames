@@ -1,50 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching Soon</title>
+    <title>Redevix Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="background">
-        <!-- Logo -->
-        <div class="logo">SydowGame.de</div>
-        
-        <!-- Text und Countdown -->
-        <div class="content">
-            <p class="subtitle">Website ist in Wartungsarbeiten</p>
-            <h1 class="main-title">Wir <span class="highlight">Releasen</span> bald!</h1>
-            
-            <!-- Countdown -->
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days">0</span>
-                    <p>Days</p>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours">0</span>
-                    <p>Hours</p>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes">0</span>
-                    <p>Minutes</p>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds">0</span>
-                    <p>Seconds</p>
-                </div>
+    <main class="stage">
+        <section class="panel login-panel" aria-labelledby="login-title">
+            <div class="panel-surface">
+                <header class="panel-header">
+                    <div class="logo-slot" aria-hidden="true"></div>
+                </header>
+                <form class="login-form" id="login-form" novalidate>
+                    <h1 id="login-title" class="visually-hidden">Login</h1>
+                    <label class="input-group">
+                        <span class="visually-hidden">Benutzername</span>
+                        <input type="text" name="username" placeholder="BENUTZERNAME" autocomplete="username" required>
+                    </label>
+                    <label class="input-group">
+                        <span class="visually-hidden">Passwort</span>
+                        <input type="password" name="password" placeholder="PASSWORT" autocomplete="current-password" required>
+                    </label>
+                    <a href="#" class="forgot-link">PASSWORT VERGESSEN?</a>
+                    <button type="submit" class="submit-btn">EINLOGGEN</button>
+                    <p class="form-feedback" role="alert" aria-live="polite"></p>
+                </form>
             </div>
-            
-            <!-- Button -->
-            <a href="#" class="cta-btn">Learn More</a>
-        </div>
-        
-        <!-- Icon -->
-        <div class="icon">
-            🚀
-        </div>
-    </div>
-    <script src="script.js"></script>
+        </section>
+        <aside class="panel info-panel" aria-labelledby="info-title">
+            <div class="panel-surface">
+                <h2 id="info-title">INFORMATION</h2>
+                <p><span class="highlight">MERKE DIR DEINE</span> EIN-<wbr>DATEN! SOLLTEST DU DEINE DATEN VERGESSEN HABEN, MELDE DICH IM <span class="highlight">SUPPORT</span>! DORT WIRD DIR EIN TEAMMITGLIED BEI DEINEM PROBLEM HELFEN.</p>
+                <p>DER SUPPORT STEHT AUCH BEI ANDEREN FRAGEN ZUR VERFÜGUNG.</p>
+                <p><span class="highlight">DEINE DATEN</span> SIND PERSONALISIERT UND GESICHERT! NIEMAND HAT ZUGRIFF!</p>
+            </div>
+        </aside>
+    </main>
+    <script src="script.js" defer></script>
 </body>
 </html>
